@@ -1,49 +1,33 @@
-//Variables
+//Check if the word is palindrome
+const isPalindrome = (str) => str === str.split('').reverse().join('');
+isPalindrome('salas');
 
-let user = 'Dow Jones';
-console.log(user);
+const isPalindrome2 = (str) => str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
+isPalindrome2('Salas');
 
-let student = 'Ludmila Zhuleha';
-user = student;
-console.log(user); //Ludmila Zhuleha
+//Create a function min(a,b)
+const minNum = (a, b) => (a > b ? b : a);
+minNum(2, 10);
 
-let test = 1;
-test++;
-test = test + '1';
-console.log(test); // 21
+//Create a function max(a,y)
+const maxNum = (a, y) => (a > y ? a : y);
+maxNum(80, 4);
 
-test = test - 1;
-console.log(test); // 20
+//Create an array of 10 elements. Every element is a random number from 0 to 100. If an element contains 0, replace
+//0 for string 'zero'.
+//Variant2
+const randomArr = (length, maxNum) =>
+  [...Array(length)].map((item) => Math.floor(Math.random() * maxNum));
+const newArr = randomArr(10, 200);
 
-console.log(Boolean(test)); //true
-console.log(!!test); // true
-
-//Multiply the elements of array
-let arr = [2, 3, 5, 8];
-let result = 1;
-for (let i = 0; i < arr.length; i++) {
-  result *= arr[i];
-}
-console.log(result);
-
-// Console.log the array elements that are more than 5 but less than 10
-let arr2 = [2, 5, 8, 15, 0, 6, 20, 3];
-for (let i = 0; i < arr2.length; i++) {
-  if (arr2[i] > 5 && arr2[i] < 10) {
-    console.log(arr2[i]);
+function replaceZero2(arr, find, replace) {
+  let arrayStr = arr.map((item) => item.toString());
+  let arrayResult = [];
+  for (let i = 0; i < arrayStr.length; i++) {
+    if (arrayStr[i].includes(find)) {
+      arrayResult.push(arrayStr[i].replaceAll(find, replace));
+    } else arrayResult.push(+arrayStr[i]);
   }
+  return arrayResult;
 }
-
-// Console.log only even elements of the array
-let arr3 = [2, 5, 8, 15, 0, 6, 20, 3];
-for (let i = 0; i < arr3.length; i++) {
-  if (arr3[i] % 2 == 0) {
-    console.log(arr3[i]);
-  }
-}
-//alternative
-for (let i = 0; i < arr3.length; i++) {
-  if ((arr3[i] & 1) == 0) {
-    console.log(arr3[i]);
-  }
-}
+replaceZero2(newArr, '0', 'zero');
