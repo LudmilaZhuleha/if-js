@@ -1,4 +1,4 @@
-// Check if the word is palindrome
+//Check if the word is palindrome
 const isPalindrome = (str) => str === str.split('').reverse().join('');
 isPalindrome('salas');
 
@@ -14,8 +14,8 @@ const maxNum = (a, y) => (a > y ? a : y);
 maxNum(80, 4);
 
 //Create an array of 10 elements. Every element is a random number from 0 to 100. If an element contains 0, replace
-// 0 for string 'zero'.
-// Variant2
+//0 for string 'zero'.
+//Variant2
 const randomArr = (length, maxNum) =>
   [...Array(length)].map((item) => Math.floor(Math.random() * maxNum));
 const newArr = randomArr(10, 200);
