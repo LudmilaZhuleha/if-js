@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "prettier": "prettier --write src/**/*.js",
-    "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LudmilaZhuleha/if-js.git"
+  },
+  "scripts": {
+    "prettier": "prettier --write src/**/*.js",
+    "lint": "eslint src/**/*.js",
+    "lint:write": "eslint --debug src/ --fix",
+    "test": "jest",
+    "prepare": "husky install",
+    "app": "prettier --write src/**/*.js && eslint src/**/*.js"
   },
   "author": "Ludmila Zhuleha",
   "license": "ISC",
@@ -20,14 +22,15 @@
   },
   "homepage": "https://github.com/LudmilaZhuleha/if-js#readme",
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "babel-jest": "^28.1.0",
     "eslint": "^8.14.0",
+    "eslint-plugin-react": "^7.29.4",
     "husky": "^7.0.4",
     "prettier": "2.6.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
-  "dependencies": {}
+  "dependencies": {
+    "jest": "^28.1.0"
+  }
 }
