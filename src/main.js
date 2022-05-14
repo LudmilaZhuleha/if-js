@@ -1,61 +1,28 @@
 // Function sum(x)(y)
-const sum = (x) => {
+export const sum = (x) => {
   return (y) => {
     return x + y;
   };
-};
-sum(10)(5);
+}
+sum(3)(7);
 
 // Color the paragraphs into different colors using 'click'.
-const firstPara = document.getElementById('text1');
-const secondPara = document.getElementById('text2');
-const thirdPara = document.getElementById('text3');
+const text1 = document.getElementById('text1');
+const text2 = document.getElementById('text2');
+const text3 = document.getElementById('text3');
 
-firstPara.onclick = (e) => {
-  const colorArray = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+const colorArray = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+
+function changeColor() {
   let counter = 0;
-  e.target.onclick = () => {
-    if (counter === colorArray.length) {
-      counter = 0;
-    }
+  return function (e) {
+    if (counter === colorArray.length) counter = 0;
     e.target.style.backgroundColor = colorArray[counter];
     counter++;
-  };
-};
-secondPara.onclick = (e) => {
-  const colorArray = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
-  let counter = 0;
-  e.target.onclick = () => {
-    if (counter === colorArray.length) {
-      counter = 0;
-    }
-    e.target.style.backgroundColor = colorArray[counter];
-    counter++;
-  };
-};
-thirdPara.onclick = (e) => {
-  const colorArray = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
-  let counter = 0;
-  e.target.onclick = () => {
-    if (counter === colorArray.length) {
-      counter = 0;
-    }
-    e.target.style.backgroundColor = colorArray[counter];
-    counter++;
-  };
-};
-// firstPara.onclick = (e)=> {
-//     e.target.style.backgroundColor = colorArray[0];
-//     document.getElementById('text1').onclick = (e) => {
-//         e.target.style.backgroundColor = colorArray[1];
-//         document.getElementById('text1').onclick = (e) => {
-//             e.target.style.backgroundColor = colorArray[2];
-//             document.getElementById('text1').onclick = (e) => {
-//                 e.target.style.backgroundColor = colorArray[3];
-//                 document.getElementById('text1').onclick = (e) => {
-//                     e.target.style.backgroundColor = colorArray[4];
-//                 }
-//             }
-//         }
-//     }
-// }
+  }
+}
+text1.onclick = changeColor();
+text2.onclick = changeColor();
+text3.onclick = changeColor();
+
+
