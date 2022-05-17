@@ -1,28 +1,36 @@
-// Function sum(x)(y)
-export const sum = (x) => {
-  return (y) => {
-    return x + y;
-  };
-}
-sum(3)(7);
+//Create function converting string '2020-11-26' into '26.11.2020'
 
-// Color the paragraphs into different colors using 'click'.
-const text1 = document.getElementById('text1');
-const text2 = document.getElementById('text2');
-const text3 = document.getElementById('text3');
+const reversedStr = (str, separator, joiner) => {
+  return str.split(separator).reverse().join(joiner);
+};
+reversedStr('2020-11-26', '-', '.');
 
-const colorArray = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+//Create a function that searches the array for string input and console.log the found string city, country, hotel
 
-function changeColor() {
-  let counter = 0;
-  return function (e) {
-    if (counter === colorArray.length) counter = 0;
-    e.target.style.backgroundColor = colorArray[counter];
-    counter++;
+const searchMatches = (arr, str) => {
+  if (Boolean(!str) || typeof str !== 'string') return `Data input error`;
+  const newArr = [];
+  str = str[0].toUpperCase() + str.slice(1);
+  arr.filter((item) => {
+    if (item.country === str || item.city === str || item.hotel === str) {
+      newArr.push(item);
+      console.log(`${item.city}, ${item.country}, ${item.hotel}`);
+    }
+  });
+  if (newArr.length === 0) {
+    console.log('Sorry, no matches found! Try another destination');
   }
-}
-text1.onclick = changeColor();
-text2.onclick = changeColor();
-text3.onclick = changeColor();
-
-
+};
+const data = [
+  {
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
+  },
+  {
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
+  }
+]
+searchMatches(data, 'berlin');
