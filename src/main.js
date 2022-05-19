@@ -12,22 +12,7 @@ const searchMatches = (arr, str) => {
   const newArr = [];
   str = str[0].toUpperCase() + str.slice(1);
   arr.filter((item) => {
-    if (item.country === str || item.city === str || item.hotel === str) {
-      newArr.push(item);
-      console.log(`${item.city}, ${item.country}, ${item.hotel}`);
-    }
-  });
-  if (newArr.length === 0) {
-    console.log('Sorry, no matches found! Try another destination');
-  }
-};
-
-const searchMatchesTest = (arr, str) => {
-  if (Boolean(!str) || typeof str !== 'string') return `Data input error`;
-  const newArr = [];
-  str = str[0].toUpperCase() + str.slice(1);
-  arr.filter((item) => {
-    if (item.country === str || item.city === str || item.hotel === str) {
+    if (item.country.includes(str) || item.city.includes(str) || item.hotel.includes(str)) {
       newArr.push(item);
     }
   });
@@ -41,7 +26,6 @@ const data = [
     country: 'Russia',
     city: 'Saint Petersburg',
     hotel: 'Hotel Leopold',
-  }
+  },
 ];
-searchMatches(data, 'berlin');
-searchMatchesTest(data, 'berlin');
+console.log(searchMatches(data, 'rus'));

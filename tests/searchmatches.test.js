@@ -3,7 +3,7 @@ const searchMatches = (arr, str) => {
     const newArr = [];
     str = str[0].toUpperCase() + str.slice(1);
     arr.filter((item) => {
-        if (item.country === str || item.city === str || item.hotel === str) {
+        if (item.country.includes(str) || item.city.includes(str) || item.hotel.includes(str)) {
             newArr.push(item);
         }
     });
@@ -15,7 +15,7 @@ const searchMatches = (arr, str) => {
 
 describe('tests for searchMatches function',()=>{
     test('the function should return something (to be defined)',()=>{
-        expect(searchMatches()).toBe(undefined)
+        expect(searchMatches()).not.toBe(undefined)
     })
     test('the function should return an array with a string',()=>{
         const data = [
