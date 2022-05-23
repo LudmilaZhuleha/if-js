@@ -1,31 +1,38 @@
-//Create function converting string '2020-11-26' into '26.11.2020'
+//Create function checking palindrome string for true/false
+const palindrome = (str) => str === str.split('').reverse().join('');
 
-const reversedStr = (str, separator, joiner) => {
-  return str.split(separator).reverse().join(joiner);
-};
-reversedStr('2020-11-26', '-', '.');
+console.log(palindrome('molom'));
 
-//Create a function that searches the array for string input and console.log the found string city, country, hotel
+//Create a function that finds unique countries with all matching cities in these countries
+ const findUniqueCountries = (array) =>{
+   const arrayUnique = array.reduce((acc, item)=>{
+     acc[item.country]=acc[item.country] || [];
+     acc[item.country].push(item.city);
+     return acc;
+   },{})
+   return arrayUnique;
+ }
+ const hotels = [
+   {
+     name: 'Hotel Leopold',
+     city: 'Saint Petersburg',
+     country: 'Russia',
+   },
+   {
+     name: 'Apartment Sunshine',
+     city: 'Santa Cruz de Tenerife',
+     country: 'Spain',
+   },
+   {
+     name: 'Villa Kunerad',
+     city: 'Vysokie Tatry',
+     country: 'Slowakia',
+   },
+   {
+     name: 'Hostel Friendship',
+     city: 'Berlin',
+     country: 'Germany',
+   }]
+console.log(findUniqueCountries(hotels));
 
-const searchMatches = (arr, str) => {
-  if (Boolean(!str) || typeof str !== 'string') return `Data input error`;
-  const newArr = [];
-  str = str[0].toUpperCase() + str.slice(1);
-  arr.filter((item) => {
-    if (item.country.includes(str) || item.city.includes(str) || item.hotel.includes(str)) {
-      newArr.push(item);
-    }
-  });
-  if (newArr.length === 0) {
-    return 'Sorry, no matches found! Try another destination';
-  }
-  return newArr;
-};
-const data = [
-  {
-    country: 'Russia',
-    city: 'Saint Petersburg',
-    hotel: 'Hotel Leopold',
-  },
-];
-console.log(searchMatches(data, 'rus'));
+export { findUniqueCountries, palindrome };
