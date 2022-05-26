@@ -1,4 +1,4 @@
-import {palindrome} from "../src/main.js";
+import {palindrome} from "../src/data/palindrome.js";
 
 describe('tests for palindrome function', ()=>{
     test('palindrome function should be defined', ()=>{

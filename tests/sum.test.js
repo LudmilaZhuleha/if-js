@@ -1,8 +1,4 @@
-const sum = (x) => {
-    return (y) => {
-        return x + y;
-    };
-};
+import {sum} from "../src/data/sum.js";
 
 describe('sum function tests', ()=>{
     test('x+y should make the sum', ()=>{

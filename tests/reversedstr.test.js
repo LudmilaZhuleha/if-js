@@ -1,4 +1,4 @@
-const reversedStr = (str, separator, joiner) => str.split(separator).reverse().join(joiner);
+import {reversedStr} from "../src/data/reveresedstr";
 
 describe('tests for reversedStr function', ()=>{
     test('given string should return something (to be defined)',()=>{

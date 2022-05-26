@@ -1,4 +1,4 @@
-import { getCalendarMonth } from "../src/main.js";
+import { getCalendarMonth } from "../src/data/getcalendarmonth.js";
 
 describe('tests for getCalendarMonth function', ()=>{
     test('function should be defined', ()=>{
