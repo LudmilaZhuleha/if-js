@@ -1,47 +1,47 @@
-import { hotels, data, studentsData } from "./data/data.js";
+import { studentsData } from './data/data.js';
 
+//Create class User with constructor options: firstName and lastName, and getter fullname returning firstname and
+// lastname
 class User {
-    constructor(options) {
-        this.firstname = options.firstname;
-        this.lastname = options.lastname;
-    }
-    get fullname(){
-        return `${this.firstname} ${this.lastname}`;
-    }
+  constructor(options) {
+    this.firstname = options.firstName;
+    this.lastname = options.lastName;
+  }
+  get fullname() {
+    return `${this.firstname} ${this.lastname}`;
+  }
 }
-const user = new User({firstname:'Andi', lastname: 'Iva'})
-console.log(user.fullname);
-
-class Student extends User{
-    constructor(options) {
-        super(options);
-        this.admissionyear = options.admissionyear;
-        this.coursename = options.coursename
-    }
-    get course(){
-        const currentyear = 2022
-        return currentyear - this.admissionyear
-    }
+//Create class Student with constructor options: admissionYear and courseName, and getter course returning
+// year of studying (current year minus admission year)
+class Student extends User {
+  constructor(options) {
+    super(options);
+    this.admissionyear = options.admissionYear;
+    this.coursename = options.courseName;
+  }
+  get course() {
+    const currentYear = 2022;
+    return currentYear - this.admissionyear;
+  }
 }
-const student = new Student({firstname: 'Ola', lastname: 'Kli', admissionyear:2019, coursename: 'BE'})
-console.log(student.course)
 
+//Create class Students accepting an array as constructor and getter getInfo() returning sorted array by course ()
+// in the following way: array of strings: ${fullName} - ${courseName}, ${course} course
 class Students {
-    constructor (arr){
-        this.arr = arr;
-    }
+  constructor(arr) {
+    this.arr = arr;
+  }
+  get getInfo() {
+    return this.arr
+      .sort((a, b) => new Student(a).course - new Student(b).course)
+      .map(
+        (item) =>
+          `${new User(item).fullname} - ${new Student(item).coursename}, ${
+            new Student(item).course
+          } course`,
+      );
+  }
 }
- Students.prototype.getInfo = function(){
-    return this.arr.sort((a,b)=>
-    {
-        const B = new Student(b).course;
-        const A = new Student(a).course;
-        if(A > B) return 1
-        else if (B>A) return -1
-        else return 0
-    }).map(item=> `${item.fullname} - ${item.coursename}, ${item.course} course`);
-}
-
 
 const sorted = new Students(studentsData);
-console.log(sorted.getInfo())
+console.log(sorted.getInfo);
