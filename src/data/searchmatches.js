@@ -1,4 +1,4 @@
-import {data} from "./data.js"
+import { data } from './data.js';
 
 //Create a function that receives an array and a string and checks if there are any matches of string in any array
 // value. The function should return a string with all findings if any.
@@ -16,6 +16,6 @@ const searchMatches = (arr, str) => {
   }
   return newArr;
 };
-console.log(searchMatches(data, 'berlin'))
+console.log(searchMatches(data, 'berlin'));
 
 export { searchMatches };
