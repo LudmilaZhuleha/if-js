@@ -1,4 +1,4 @@
-const colorArray = [magenta, red, purple, lightgreen, fuchsia];
+const colorArray = ['magenta', 'red', 'purple', 'lightgreen', 'fuchsia'];
 const hotels = [
   {
     name: 'Hotel Leopold',

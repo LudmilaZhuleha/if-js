@@ -20,7 +20,7 @@ class Student extends User {
     this.coursename = options.courseName;
   }
   get course() {
-    const currentYear = 2022;
+    const currentYear = (new Date()).getFullYear();
     return currentYear - this.admissionyear;
   }
 }
