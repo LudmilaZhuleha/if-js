@@ -1,47 +1,19 @@
-import { studentsData } from './data/data.js';
+import { obj1, obj2, obj3 } from './data/data.js';
 
-//Create class User with constructor options: firstName and lastName, and getter fullname returning firstname and
-// lastname
-class User {
-  constructor(options) {
-    this.firstname = options.firstName;
-    this.lastname = options.lastName;
-  }
-  get fullname() {
-    return `${this.firstname} ${this.lastname}`;
-  }
-}
-//Create class Student with constructor options: admissionYear and courseName, and getter course returning
-// year of studying (current year minus admission year)
-class Student extends User {
-  constructor(options) {
-    super(options);
-    this.admissionyear = options.admissionYear;
-    this.coursename = options.courseName;
-  }
-  get course() {
-    const currentYear = (new Date()).getFullYear();
-    return currentYear - this.admissionyear;
-  }
-}
+// Create a deepEqual function, which compares objects. Assume and check that (obj1===obj2)//true, (obj1===obj3)//false
+function deepEqual(object1, object2) {
+  if (typeof object1 !== 'object' || typeof object2 !== 'object') return false;
+  if (Object.keys(object1).length !== Object.keys(object2).length) return false;
+  if (Object.values(object1).length !== Object.values(object2).length) return false;
 
-//Create class Students accepting an array as constructor and getter getInfo() returning sorted array by course ()
-// in the following way: array of strings: ${fullName} - ${courseName}, ${course} course
-class Students {
-  constructor(arr) {
-    this.arr = arr;
+  for (let i = 0; i < Object.keys(object1).length; i++) {
+    if (Object.keys(object1).sort()[i] !== Object.keys(object2).sort()[i]) return false;
   }
-  get getInfo() {
-    return this.arr
-      .sort((a, b) => new Student(a).course - new Student(b).course)
-      .map(
-        (item) =>
-          `${new User(item).fullname} - ${new Student(item).coursename}, ${
-            new Student(item).course
-          } course`,
-      );
-  }
-}
 
-const sorted = new Students(studentsData);
-console.log(sorted.getInfo);
+  const equal = Object.values(object1).every((item) => object1[item] === object2[item]);
+  if (!equal) return false;
+  return true;
+}
+console.log(deepEqual(obj1, obj2));
+console.log(deepEqual(obj1, obj3));
+console.log(deepEqual(obj2, obj3));

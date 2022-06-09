@@ -1,4 +1,4 @@
-import {hotels} from "./data.js"
+import { hotels } from './data.js';
 
 //Create a function that finds unique countries with all matching cities in these countries
 const findUniqueCountries = (array) => {

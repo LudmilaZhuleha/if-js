@@ -224,4 +224,34 @@ const studentsData = [
     courseName: 'Android',
   },
 ];
-export { hotels, data, studentsData, colorArray };
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: {
+      a: 1,
+    },
+  },
+};
+const obj2 = {
+  b: {
+    c: {
+      a: 1,
+    },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: {
+      a: 'a',
+    },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+export { hotels, data, studentsData, colorArray, obj1, obj2, obj3 };
