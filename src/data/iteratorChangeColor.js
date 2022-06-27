@@ -8,7 +8,7 @@ const colors = {
     if (this.current === undefined) {
       this.current = this.counter;
     }
-    if (this.current < this.data.length) {
+    if (this.current <= this.data.length) {
       return {
         done: false,
         value: this.data[this.current++],
@@ -24,7 +24,7 @@ const colors = {
   },
 };
 
-function changeColor(colors) {
+function changeColor() {
   return function (event) {
     event.target.style.backgroundColor = colors.next().value;
   };
@@ -32,5 +32,5 @@ function changeColor(colors) {
 const ids = document.querySelectorAll('p');
 
 for (let i = 0; i < ids.length; i++) {
-  ids[i].addEventListener('click', changeColor({ ...colors }));
+  ids[i].addEventListener('click', changeColor());
 }
