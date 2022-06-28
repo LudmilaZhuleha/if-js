@@ -1,36 +1,31 @@
-const colors = {
-  data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-  [Symbol.iterator]() {
-    this.counter = 0;
-    return this; // ваш код
-  },
-  next() {
-    if (this.current === undefined) {
-      this.current = this.counter;
-    }
-    if (this.current < this.data.length) {
-      return {
-        done: false,
-        value: this.data[this.current++],
-      };
-    } else {
-      delete this.current;
-      this.current = 0;
-      return {
-        done: false,
-        value: this.data[this.current++],
-      };
-    }
-  },
-};
+import {dataHomes} from "./data/data.js";
 
-function changeColor(colors) {
-  return function (event) {
-    event.target.style.backgroundColor = colors.next().value;
-  };
-}
-const ids = document.querySelectorAll('p');
+const homesCards = document.querySelector('.homes-cards');
 
-for (let i = 0; i < ids.length; i++) {
-  ids[i].addEventListener('click', changeColor({ ...colors }));
+const createElement =(tagName, className)=>{
+    const elem = document.createElement(tagName);
+    elem.classList.add(className);
+    return elem;
 }
+
+const render = (data)=>{
+    data.forEach((item)=>{
+        const {name, city, country, imageUrl} = item;
+        const homesCard = createElement('div', 'homes-card');
+        const img = createElement('img', 'homes-image');
+        img.src = imageUrl;
+        img.alt = `${name}`;
+        img.width = '295';
+        img.height ='295';
+
+        const title = createElement('h3', 'homes-image-name');
+        title.textContent = `${name}`;
+
+        const location = createElement('p', 'homes-image-location');
+        location.textContent = `${city}, ${country}`;
+
+        homesCard.append(img, title, location);
+        homesCards.append(homesCard);
+    })
+}
+render(dataHomes);
