@@ -43,12 +43,13 @@ function openModal() {
 function closeModal() {
   modalConditions.style.display = 'none';
 }
-inputConditions.addEventListener('click', openModal);
+inputConditions.addEventListener('click', (event) => {
+  event.preventDefault();
+  openModal();
+});
 
 window.addEventListener('click', (event) => {
-  if (!event.target.contains('.main-form-modal')) {
-    closeModal;
-  }
+  if (event.target.contains(modalConditions)) closeModal();
 });
 
 function counterPlus(item, total) {
@@ -89,8 +90,11 @@ downBtnRooms.addEventListener('click', (e) => {
 upBtnChilds.addEventListener('click', (e) => {
   e.preventDefault();
   counterPlus(countBtnChilds, 10);
+
   addChildInfo.style.display = 'block';
-  createChildSelect();
+  if (countBtnChilds.innerHTML < 10) {
+    createChildSelect();
+  }
 });
 
 downBtnChilds.addEventListener('click', (e) => {
