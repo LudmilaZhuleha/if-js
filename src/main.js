@@ -1,5 +1,3 @@
-import {dataHomes} from "./data/data.js";
-
 const homesCards = document.querySelector('.homes-cards');
 
 const createElement =(tagName, className)=>{
@@ -8,8 +6,11 @@ const createElement =(tagName, className)=>{
     return elem;
 }
 
-const render = (data)=>{
-    data.forEach((item)=>{
+const render = async()=>{
+    const url = 'https://fe-student-api.herokuapp.com/api/hotels/popular';
+    const response = await fetch(url);
+    const result = await response.json();
+    result.forEach((item)=>{
         const {name, city, country, imageUrl} = item;
         const homesCard = createElement('div', 'homes-card');
         const img = createElement('img', 'homes-image');
@@ -17,7 +18,6 @@ const render = (data)=>{
         img.alt = `${name}`;
         img.width = '295';
         img.height ='295';
-
         const title = createElement('h3', 'homes-image-name');
         title.textContent = `${name}`;
 
@@ -28,4 +28,4 @@ const render = (data)=>{
         homesCards.append(homesCard);
     })
 }
-render(dataHomes);
+render();
