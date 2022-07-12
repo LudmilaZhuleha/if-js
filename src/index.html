@@ -53,23 +53,18 @@
                 <form action="/" method="POST">
                     <div class="main-search-form">
                         <div class="input-place-wrap">
-                            <input class="input-place" type="text" name="place" id="place" list="city" required>
+                            <input class="input-place" type="text" name="place" id="place">
                             <label for="place" class="label-place">Your destination or hotel name</label>
-                            <datalist id="city">
-                                <option value="Paris" selected>Paris</option>
-                                <option value="New York">New York</option>
-                                <option value="Minsk">Minsk</option>
-                            </datalist>
                         </div>
                         <div class="input-date-wrap">
                             <div class="input-date-wrap-1">
                                 <input class="input-date" type="text" onfocus="(this.type='date')"
-                                       onblur="(this.type='text')" id="check-in" required>
+                                       onblur="(this.type='text')" id="check-in">
                                 <label for="check-in" class="label-date-1">Check-In</label>
                             </div>
                             <div class="input-date-wrap-2">
                                 <input class="input-date" type="text" onfocus="(this.type='date')"
-                                       onblur="(this.type='text')" id="check-out" required>
+                                       onblur="(this.type='text')" id="check-out">
                                 <label for="check-out" class="label-date-2">Check-Out</label>
                             </div>
                         </div>
@@ -123,6 +118,12 @@
                     </a>
                 </li>
             </ul>
+        </div>
+    </section>
+    <section class="homes-available hide">
+        <div class="homes-container-available">
+            <h3 class="homes-title-available">Available hotels</h3>
+            <div class="available"></div>
         </div>
     </section>
     <section class="offer-container">
