@@ -37,19 +37,21 @@ const renderMatches = (data) => {
   });
 };
 
-const filterMatches = async (val) => {
-  const response = await fetch(url);
-  const result = await response.json();
-
-  const newArr = result.filter(
-    ({ name, city, country }) => country.includes(val) || city.includes(val) || name.includes(val),
+const filter =(data, val)=>{
+  const filteredData = data.filter(
+      ({ name, city, country }) => country.includes(val) || city.includes(val) || name.includes(val),
   );
-  renderMatches(newArr);
+  return filteredData;
+}
+
+const filterMatches = async (val) => {
+  const data = await fetch(url);
+  const response = await data.json();
+  renderMatches(filter(response, val));
 };
 
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault();
-
   const value = document.querySelector('.input-place').value;
   document.querySelector('.homes-available').classList.remove('hide');
   console.log(value);
