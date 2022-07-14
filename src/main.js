@@ -1,40 +1,59 @@
-const homesCards = document.querySelector('.homes-cards');
+const homesCardsAvailable = document.querySelector('.available');
+const searchBtn = document.querySelector('.button-lg');
+const url = 'https://fe-student-api.herokuapp.com/api/hotels';
 
-const createElement = (tagName, className) => {
+const createElem = (tagName, attributes) => {
   const elem = document.createElement(tagName);
-  elem.classList.add(className);
+  Object.assign(elem, attributes);
   return elem;
 };
 
-const url = 'https://fe-student-api.herokuapp.com/api/hotels/popular';
-
-const render = (data) => {
+const renderMatches = (data) => {
+  homesCardsAvailable.innerHTML = '';
   data.forEach((item) => {
-    const { name, city, country, imageUrl } = item;
-    const homesCard = createElement('div', 'homes-card');
-    const img = createElement('img', 'homes-image');
-    img.src = imageUrl;
-    img.alt = `${name}`;
-    img.width = '295';
-    img.height = '295';
+    const { name, country, city, imageUrl } = item;
+    const homesCard = createElem('div', {
+      className: 'homes-card',
+    });
+    const img = createElem('img', {
+      className: 'homes-image',
+      src: imageUrl,
+      alt: `${name}`,
+      width: '295',
+      height: '295',
+    });
+    const title = createElem('h3', {
+      className: 'homes-image-name',
+      textContent: `${name}`,
+    });
 
-    const title = createElement('h3', 'homes-image-name');
-    title.textContent = `${name}`;
-
-    const location = createElement('p', 'homes-image-location');
-    location.textContent = `${city}, ${country}`;
+    const location = createElem('p', {
+      className: 'homes-image-location',
+      textContent: `${city}, ${country}`,
+    });
 
     homesCard.append(img, title, location);
-    homesCards.append(homesCard);
+    homesCardsAvailable.append(homesCard);
   });
 };
-const getData = async (url) => {
-  try {
-    const response = await fetch(url);
-    const result = await response.json();
-    render(result);
-  } catch (error) {
-    console.log(`ERROR: ${error}`);
-  }
+
+const filter =(data, val)=>{
+  const filteredData = data.filter(
+      ({ name, city, country }) => country.includes(val) || city.includes(val) || name.includes(val),
+  );
+  return filteredData;
+}
+
+const filterMatches = async (val) => {
+  const data = await fetch(url);
+  const response = await data.json();
+  renderMatches(filter(response, val));
 };
-getData(url);
+
+searchBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const value = document.querySelector('.input-place').value;
+  document.querySelector('.homes-available').classList.remove('hide');
+  console.log(value);
+  filterMatches(value);
+});

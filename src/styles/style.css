@@ -348,10 +348,26 @@ input[type="date"] {
     border: 1px solid  #3077C6;
     color: #333333;
 }
+.homes-available {
+    order: 2;
+    background-color: #EAF0F9;
+    display: flex;
+    flex-direction: column;
+}
+.homes-container-available {
+    width: min(100%, 1440px);
+    min-height: auto;
+    margin: 0 auto;
+    padding: 7.5rem 6.5rem;
+    position: relative;
+}
+.hide {
+    display: none;
+}
 
 /* Styles for What do we offer section */
 .offer-container {
-    order: 2;
+    order: 3;
     margin: 0 auto;
     width: min(100%, 1440px);
     min-height: auto;
@@ -411,7 +427,7 @@ input[type="date"] {
 
 /*Styles for Homes visitors love section*/
 .homes {
-    order: 3;
+    order: 4;
     background-color: #EAF0F9;
     display: flex;
     flex-direction: column;
@@ -425,7 +441,7 @@ input[type="date"] {
     position: relative;
 }
 
-.homes-title {
+.homes-title, .homes-title-available {
     color: #383838;
     font-size: 40px;
     font-weight: 500;
@@ -433,7 +449,7 @@ input[type="date"] {
     text-align: center;
 }
 
-.homes-cards {
+.homes-cards, .available {
     display: flex;
     flex-flow: row wrap;
     column-gap: 16px;
@@ -473,7 +489,7 @@ input[type="date"] {
 
 /*Styles for Best destinations*/
 .places {
-    order: 4;
+    order: 5;
     background-color: #fff;
 }
 
@@ -599,7 +615,7 @@ input[type="date"] {
 
 /*Styles for Signup*/
 .signup {
-    order: 5;
+    order: 6;
     background-color: #FFFFFF;
 }
 
@@ -673,7 +689,7 @@ input[type="date"] {
 
 /* styles for Guests reviews section */
 .reviews {
-    order: 6;
+    order: 7;
     background-color: #fff;
 }
 
