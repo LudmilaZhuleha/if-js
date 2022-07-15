@@ -1,63 +1,18 @@
-const homesCardsAvailable = document.querySelector('.available');
-const searchBtn = document.querySelector('.button-lg');
-const url = 'https://fe-student-api.herokuapp.com/api/hotels';
+const form = document.querySelector('.form-wrapper');
+const url = 'https://fe-student-api.herokuapp.com/api/file';
 
-const createElem = (tagName, attributes) => {
-  const elem = document.createElement(tagName);
-  Object.assign(elem, attributes);
-  return elem;
-};
-
-const renderMatches = (data) => {
-  homesCardsAvailable.innerHTML = '';
-  data.forEach((item) => {
-    const { name, country, city, imageUrl } = item;
-    const homesCard = createElem('div', {
-      className: 'homes-card',
-    });
-    const img = createElem('img', {
-      className: 'homes-image',
-      src: imageUrl,
-      alt: `${name}`,
-      width: '295',
-      height: '295',
-    });
-    const title = createElem('h3', {
-      className: 'homes-image-name',
-      textContent: `${name}`,
-    });
-
-    const location = createElem('p', {
-      className: 'homes-image-location',
-      textContent: `${city}, ${country}`,
-    });
-
-    homesCard.append(img, title, location);
-    homesCardsAvailable.append(homesCard);
-  });
-};
-const filter = (data, val) => {
-  const filteredData = data.filter(
-    ({ name, city, country }) => country.includes(val) || city.includes(val) || name.includes(val),
-  );
-  return filteredData;
-};
-const filterMatches = async (val) => {
-  if (sessionStorage.getItem('data')) {
-    const storedData = JSON.parse(sessionStorage.getItem('data'));
-    renderMatches(filter(storedData, val));
-  } else {
-    const data = await fetch(url);
-    const response = await data.json();
-    sessionStorage.setItem('data', JSON.stringify(response));
-    renderMatches(filter(response, val));
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const fetchOptions = {
+    method: 'POST',
+    enctype: 'multipart/form-data',
+    body: new FormData(form),
+  };
+  try {
+    const response = await fetch(url, fetchOptions);
+    const result = await response.json();
+    console.log(`File ${result.fileName} has been successfully uploaded.`);
+  } catch (error) {
+    console.log(error);
   }
-};
-
-searchBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const value = document.querySelector('.input-place').value;
-  document.querySelector('.homes-available').classList.remove('hide');
-  console.log(value);
-  filterMatches(value);
 });

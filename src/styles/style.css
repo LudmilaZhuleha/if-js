@@ -619,7 +619,7 @@ input[type="date"] {
     background-color: #FFFFFF;
 }
 
-.signup-container {
+.signup-container, .form-container {
     width: min(100%, 1440px);
     min-height: auto;
     margin: 0 auto;
@@ -838,6 +838,21 @@ article {
     width: 56px;
     height: 8px;
     display: none;
+}
+
+/* Styles for input*/
+.form-title {
+    margin-bottom: 20px;
+    color:  #10367C;
+    margin-left: 30px;
+}
+.form-label {
+    margin-left: 30px;
+    color:  #10367C;
+}
+.form-input {
+    margin-top: 15px;
+    margin-bottom: 40px;
 }
 
 /* styles for Footer section */
