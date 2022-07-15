@@ -36,18 +36,22 @@ const renderMatches = (data) => {
     homesCardsAvailable.append(homesCard);
   });
 };
-
-const filter =(data, val)=>{
+const filter = (data, val) => {
   const filteredData = data.filter(
-      ({ name, city, country }) => country.includes(val) || city.includes(val) || name.includes(val),
+    ({ name, city, country }) => country.includes(val) || city.includes(val) || name.includes(val),
   );
   return filteredData;
-}
-
+};
 const filterMatches = async (val) => {
-  const data = await fetch(url);
-  const response = await data.json();
-  renderMatches(filter(response, val));
+  if (sessionStorage.getItem('data')) {
+    const storedData = JSON.parse(sessionStorage.getItem('data'));
+    renderMatches(filter(storedData, val));
+  } else {
+    const data = await fetch(url);
+    const response = await data.json();
+    sessionStorage.setItem('data', JSON.stringify(response));
+    renderMatches(filter(response, val));
+  }
 };
 
 searchBtn.addEventListener('click', (e) => {
