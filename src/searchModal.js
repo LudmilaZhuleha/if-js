@@ -1,4 +1,5 @@
 const inputConditions = document.querySelector('.input-conditions');
+const inputLabel = document.querySelector('.label-conditions');
 const modalConditions = document.querySelector('.main-form-modal');
 const downBtnAdults = document.querySelector('.adults-down');
 const upBtnAdults = document.querySelector('.adults-up');
@@ -67,30 +68,38 @@ function counterMinus(item, total) {
     item.innerHTML = count;
   }
 }
+const showConditions = () => {
+    return inputLabel.textContent = `${countBtnAdults.textContent} Adults - ${countBtnChilds.textContent} Children - ${countBtnRooms.textContent} Rooms`;
+};
 
 upBtnAdults.addEventListener('click', (e) => {
   e.preventDefault();
   counterPlus(countBtnAdults, 30);
+  showConditions();
 });
 
 downBtnAdults.addEventListener('click', (e) => {
   e.preventDefault();
   counterMinus(countBtnAdults, 30);
+    showConditions();
 });
 
 upBtnRooms.addEventListener('click', (e) => {
   e.preventDefault();
   counterPlus(countBtnRooms, 30);
+  showConditions();
 });
 
 downBtnRooms.addEventListener('click', (e) => {
   e.preventDefault();
   counterMinus(countBtnRooms, 30);
+  showConditions();
 });
 
 upBtnChilds.addEventListener('click', (e) => {
   e.preventDefault();
   counterPlus(countBtnChilds, 10);
+  showConditions();
 
   addChildInfo.style.display = 'block';
   if (countBtnChilds.innerHTML < 10) {
@@ -101,6 +110,7 @@ upBtnChilds.addEventListener('click', (e) => {
 downBtnChilds.addEventListener('click', (e) => {
   e.preventDefault();
   counterMinus(countBtnChilds, 10);
+  showConditions();
 
   const select = document.querySelectorAll('.modal-age-select');
   for (let i = 0; i < select.length; i++) {
