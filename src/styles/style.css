@@ -455,17 +455,20 @@ input[type="date"] {
     column-gap: 16px;
     justify-content: space-between;
 }
-
+.available {
+    justify-content: flex-start;
+}
 .homes-card {
     display: flex;
     flex-flow: column wrap;
     flex-basis: 23%;
     list-style: none;
+    margin-bottom: 20px;
 }
 
 .homes-image-name {
-    margin-top: 8px;
-    margin-bottom: 24px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     color: #3077C6;
     font-size: 24px;
     font-weight: 400;
