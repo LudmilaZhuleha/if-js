@@ -4,7 +4,7 @@ import {homesCards} from "./variables.js";
 const renderHomes = (data) => {
     data.forEach(({ name, city, country, imageUrl }) => {
         const homesCard = createElem('div', {
-            className: 'homes-card',
+            className: 'homes-card swiper-slide',
         });
         const img = createElem('img', {
             className: 'homes-image',

@@ -7,6 +7,7 @@
     <meta name="author" content="Luda Zhuleha">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
     <title>TripHouse Project</title>
 </head>
 <body>
@@ -158,8 +159,11 @@
     <section class="homes">
         <div class="homes-container">
             <h3 class="homes-title">Homes guests love</h3>
-            <div class="homes-cards"></div>
-            <button type="button" class="homes-slider-button"></button>
+            <div class="swiper">
+                <div class="homes-cards swiper-wrapper"></div>
+                <button type="button" class="homes-slider-button swiper-button-prev"></button>
+                <button type="button" class="homes-slider-button swiper-button-next"></button>
+            </div>
         </div>
     </section>
     <section class="places">
@@ -704,5 +708,6 @@
 </svg>
 <script type="module" src="./modalConditions.js"></script>
 <script type="module" src="./main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 </body>
 </html>
